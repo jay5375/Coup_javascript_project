@@ -1,4 +1,4 @@
-# Background: 
+# Background
 Coup is a card based game where the goal is to entirely eliminate the influence of other players. There are 4 classes
 each with unique abilities that can influence the player's coin pile or other players. Coins can be used to reveal a card 
 from another player, effectively eliminating that card. In addition, bluffs can be called on another players action in order to attempt to reveal their card. The last one standing wins.
@@ -25,4 +25,4 @@ In addition, this project will include:
 - Thursday: Add more complex logic to computer player
 
 # Wireframe
-- ![wireframe](wireframe.png)
+![wireframe](wireframe.png)
