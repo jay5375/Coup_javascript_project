@@ -1,7 +1,6 @@
 # Background
 Coup is a card based game where the goal is to entirely eliminate the influence of other players. There are 4 classes
-each with unique abilities that can influence the player's coin pile or other players. Coins can be used to reveal a card 
-from another player, effectively eliminating that card. Players are able to use the ability of any class, however, opposing players can call a bluff on that action. In the event a bluff is called, if the player who used the ability does not have the corresponding card in their hand, that player then reveals one card. In turn, if the player does have the card in their hand, the person who called the bluff must reveal one of their cards. The last one standing wins.
+each with unique abilities that can influence the player's coin pile or other players. Each player starts with 2 cards and 2 coins. Once a player has reached 10 coins, they can 'coup' another player. This forces the effected player to reveal one card, effectively eliminating that card from play. Each turn, players are able to use the ability of any class, however, opposing players can call a bluff on that action. In the event a bluff is called, if the player who used the ability does not have the corresponding card in their hand, that player then reveals one card. In turn, if the player does have the card in their hand, the person who called the bluff must reveal one of their cards. The last one standing wins.
 
 # Functionality & MVPs
 In Coup, users will be able to:
