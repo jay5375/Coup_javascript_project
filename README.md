@@ -3,13 +3,14 @@ Coup is a card based game where the goal is to entirely eliminate the influence 
 each with unique abilities that can influence the player's coin pile or other players. Coins can be used to reveal a card 
 from another player, effectively eliminating that card. In addition, bluffs can be called on another players action in order to attempt to reveal their card. The last one standing wins.
 
-# In Coup, users will be able to:
+# Functionality & MVPs
+In Coup, users will be able to:
 - Use card abilities in order to gain an advantage 
 - Call bluffs on opponents actions 
 - Check their coin pile to see how far they are from their intended action 
 - See revealed opponents cards to make more informed decisions 
 
-# In addition, this project will include: 
+In addition, this project will include:
 - A change or addition of a class in order to introduce a new dynamic 
 - Animations for actions such as card abilities or drawing from deck 
 
