@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#board {
+    background-image: url('../assets/background.jpg');
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+}
+
+.title{
+    
+}
+
+:root {
+  --color-red: #ec1840;
+  --color-purple: #7a18ec;
+  --color-white: #fff;
+  --color-pink: #7A07A2;
+  --color-black-1: #111;
+  --color-black-2: #222;
+  --color-black-3: #444;
+  --speed-normal: 0.5s;
+  --speed-fast: 0.8s;
+}
+// https://codepen.io/martinboykov/pen/jOrEWBr
+#tax {
+    padding: 14px 30px;
+    bottom: 2px;
+    left: 175px;
+    position: absolute;
+    width: 10%;
+    background-color: #A42AB5;
+    font-family: "Black Ops One";
+}
+
+#steal {
+    padding: 14px 30px;
+    bottom: 2px;
+    left: 375px;
+    position: absolute;
+    width: 10%;
+    background-color: #0C4F92;
+    font-family: "Black Ops One";
+}
+
+#coup {
+    padding: 14px 30px;
+    bottom: 2px;
+    left: 1375px;
+    position: absolute;
+    width: 10%;
+    background-color: #D3D02A;
+    font-family: "Black Ops One";
+}
+
+#assassinate {
+    padding: 14px 30px;
+    bottom: 2px;
+    left: 575px;
+    position: absolute;
+    width: 10%;
+    background-color: #E1261A;
+    font-family: "Black Ops One";
+}
+
+#block {
+    padding: 14px 30px;
+    bottom: 2px;
+    left: 775px;
+    position: absolute;
+    width: 10%;
+    background-color: #5C636D;
+    font-family: "Black Ops One";
+}
+
+#allow {
+    padding: 14px 30px;
+    bottom: 2px;
+    left: 975px;
+    position: absolute;
+    width: 10%;
+    background-color: #17B34B;
+    font-family: "Black Ops One";
+    
+}
+
+#challenge {
+    padding: 14px 30px;
+    bottom: 2px;
+    left: 1175px;
+    position: absolute;
+    width: 10%;
+    background-color: #90A3B6;
+    font-family: "Black Ops One";
+}
+
+nav {
+    height: 40px;
+    background-color: #141C27;
+    color: white;
+ 
+}
+
+button{
+    border-radius: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: grey;
+}
+
+.navbar {
+    display: flex;
+    list-style-type: none;
+    padding-top: 12px;
+    justify-content: space-evenly;
+    font-family: "Black Ops One";
+}
+
+
+
+#flex {
+    display: flex;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: black;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+  color: white;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.instructions{
+    font-family: "Black Ops One";
+}
+
+#mod{
+    font-family: "Black Ops One";
+}
+
+.w3-modal {
+    z-index: 3;
+    display: none;
+    padding-top: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}

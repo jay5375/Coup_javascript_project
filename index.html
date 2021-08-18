@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./dist/main.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="./dist/main.js"></script>
+    <title>Coup</title>
+</head>
+
+<body>
+    <nav>
+        <ul class='navbar'>
+            <li>Coup</li>
+            <li><a href='https://github.com/jay5375/Coup_javascript_project'>Github</a></li>
+            <li><a onclick="document.getElementById('id01').style.display='block'">Instructions</a></li>
+        </ul>
+    </nav>
+    <div id="id01" class="w3-modal">
+        <div class="modal-content">
+            <div>
+                <span onclick="document.getElementById('id01').style.display='none'"
+                    class="close">&times;</span>
+                <p class="instructions">Instructions</p>
+                <p class="instructions">Coup is a role based game where the goal is to eliminate the other players influence entirely.
+                    This can be achieved by revealing both of the opponents cards through different means.
+                    Each player starts with 1 coin and 2 roles. Each role is tied to a different ability, but players can 
+                    use any ability as well as call bluffs on the opponents action. In the event that a bluff is called,
+                    if the player who activated that ability does not have the associated role, they then lose a role.
+                    In turn, if they do have the associated role, the player who called the bluff then loses a card.
+                    In addition, coins can be gained through abilities and 10 coins can be used
+                    to 'coup' another player which effectively removes one of their cards. The last one standing wins. 
+                    Below find a legend of the roles and their associated abilities.
+                    <ul id='mod'>
+                        <li>Captain(Steal): Steal 2 coins from the other player</li>
+                        <li>Duke(Tax): Gain 3 coins from the bank </li>
+                        <li>Assassin(Assassinate): Remove a role from the opponent</li>
+                        <li>Contessa(Block): Block assassinate</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id='flex'>
+        <button id='tax' onclick="">Tax</button>
+        <button id='steal'>Steal</button>
+        <button id='assassinate'>Assassinate</button>
+        <button id='block'>Block</button>
+        <button id='allow'>Allow</button>
+        <button id='challenge'>Challenge</button>
+        <button id='coup'>Coup</button>
+    </div>
+    <canvas id='board'></canvas>
+    
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{
+  "name": "Coup_javascript_project",
+  "version": "1.0.0",
+  "description": "Coup is a card based game where the goal is to entirely eliminate the influence of other players. There are 4 classes each with unique abilities that can influence the player's coin pile or other players. Each player starts with 2 cards and 2 coins. Once a player has reached 10 coins, they can 'coup' another player. This forces the effected player to reveal one card, effectively eliminating that card from play. Each turn, players are able to use the ability of any class, however, opposing players can call a bluff on that action. In the event a bluff is called, if the player who used the ability does not have the corresponding card in their hand, that player then reveals one card. In turn, if the player does have the card in their hand, the person who called the bluff must reveal one of their cards. The last one standing wins.",
+  "main": "index.js",
+  "browserslist": [
+    "defaults"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jay5375/Coup_javascript_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jay5375/Coup_javascript_project/issues"
+  },
+  "homepage": "https://github.com/jay5375/Coup_javascript_project#readme",
+  "dependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.16.1",
+    "css-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.2.0",
+    "regenerator-runtime": "^0.13.9",
+    "sass": "^1.37.5",
+    "sass-loader": "^12.1.0",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
+
