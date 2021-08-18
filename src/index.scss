@@ -150,8 +150,8 @@ a:hover {
 
 .modal-content {
   background-color: black;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  margin: 10% auto; /* 15% from the top and centered */
+  padding: 10px;
   border: 1px solid #888;
   width: 50%; /* Could be more or less, depending on screen size */
   color: white;
@@ -160,8 +160,13 @@ a:hover {
 .close {
   color: #aaa;
   float: right;
-  font-size: 10px;
+  font-size: 30px;
   font-weight: bold;
+}
+
+
+.close:hover{
+    cursor: pointer;
 }
 
 .instructions{
@@ -172,7 +177,7 @@ a:hover {
     font-family: "Black Ops One";
 }
 
-.w3-modal {
+.modal {
     z-index: 3;
     display: none;
     padding-top: 50px;

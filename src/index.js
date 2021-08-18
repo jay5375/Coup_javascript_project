@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const v = new Gameview(g, canvasEl); 
     g.button_actions(); 
     v.start()
-  
+    // g.play()
+    g.playerTurn()
 });
 
 // var canvas = document.getElementById('viewport'),

@@ -9,6 +9,7 @@ class Game {
         this.current_player = this.player;
         this.win = false;
         this.canvas = canvas;
+        this.game_over = false 
     }
     
     button_actions(){
@@ -27,41 +28,23 @@ class Game {
         document.querySelector("#coup").onclick = function () { 
             this.coup.bind(this)();
         }.bind(this)
+        document.querySelector("#allow").onclick = function () { 
+            this.allow.bind(this)();
+        }.bind(this)
+        document.querySelector("#challenge").onclick = function () { 
+            this.challenge.bind(this)();
+        }.bind(this)
     }
 
-    switchTurns(){
-        if (this.current_player !== this.player){
-            this.current_player = this.ai; 
-        } else {
-            this.current_player = this.player;
-        }
-    }
-
-
-    win(){
-        if (this.player.roles[0][1] === false && this.player.roles[1][1] === false ){
-            console.log('Ai wins')
-        } else if (this.ai.roles[0][1] === true && this.ai.roles[1][1] === true){
-            console.log('Player wins')
-        }
-    }
-
-    turn(){
-        this.current_player
-    }
     // rerender cards
     tax(){
-        const others = document.querySelectorAll('button')
-        others.forEach(el => {
-            el.disabled = true 
-        })
+        this.disable_actions()
         const decision = this.ai.decision()
         if (decision === 'allow'){
             this.player.coins += 3
             console.log('+3')
-           
         } else {
-            if (this.player.roles[0].includes('duke') || this.player.roles[1].includes('duke')){
+            if ((this.player.roles[0][0] === 'duke' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'duke' && this.player.roles[1][1] === true)){
                 this.ai.removeRole()
                 console.log('ai loses card')
             } else {
@@ -73,16 +56,13 @@ class Game {
     }
 
     assassinate(){
-        const other = document.querySelectorAll('button')
-        other.forEach(el => {
-            el.disabled = true 
-        })
+        this.disable_actions()
         const decision = this.ai.decision()
         if (decision === 'allow'){
             this.ai.removeRole() 
             console.log('Ai loses card')
         } else {
-            if (this.player.roles[0].includes('assassin') || this.player.roles[1].includes('assassin')) {
+            if ((this.player.roles[0][0] === 'assassin' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'assassin' && this.player.roles[1][1] === true)) {
                 this.ai.removeRole()
                 console.log('Ai loses card2')
             } else {
@@ -95,32 +75,29 @@ class Game {
     }
 
      steal(){
-        const other = document.querySelectorAll('button')
-        other.forEach(el => {
-            el.disabled = true 
-        })
+        this.disable_actions()
         const decision = this.ai.decision()
         if (decision === 'allow'){
-            if (this.ai.coins === 1)
+            if (this.ai.coins === 1){
             this.player.coins += 1 
-            this.ai.coins -= 1
             this.ai.coins = 0
             console.log('stolen') 
-        } else if (this.ai.coins > 0){
+        } else if (this.ai.coins > 0 && this.ai.coins !== 1){
             this.player.coins += 2
             this.ai.coins -= 2
             console.log('stolen2')
         } else if (this.ai.coins <= 0) {
             this.ai.coins = 0
             console.log('0 coins')
-        }  else {
-            if (this.player.roles[0].includes('captain') || this.player.roles[1].includes('captain')) {
+        }}
+        else {
+            if ((this.player.roles[0][0] === 'captain' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'captain' && this.player.roles[1][1] === true)) {
                 this.ai.removeRole()
             } else {
                 this.player.removeRole()
             }
         }
-
+        
         setTimeout(this.allow_actions, 2000)
     }
 
@@ -131,48 +108,113 @@ class Game {
         }
     }
 
-    //  block(){
-    //     const other = document.querySelectorAll('button')
-    //     other.forEach(el => {
-    //         el.disabled = true 
-    //     })
-    //     const decision = this.ai.decision()
-    //     if (decision === 'allow'){
-             
-    //     } else {
-    //         if (this.player.roles[0].includes('assassin') || this.player.roles[1].includes('assassin')) {
-    //             this.ai.removeRole()
-    //         } else {
-    //             this.player.removeRole()
-    //         }
-    //     }
-
-    //     setTimeout(this.allow_actions, 2000)
-    // }
-
-    start(){
-        
-        this.switchTurns()
+    allow(){
+        if (this.aiMove === 'steal' && this.player.coins === 1){
+            this.player.coins = 0
+            this.ai.coins += 1 
+        } else if (this.aiMove === 'steal' && this.player.coins > 1){
+            this.player.coins -= 2
+            this.ai.coins += 2
+        } else if (this.aiMove === 'assassinate'){
+            this.player.removeRole()
+        } else if (this.aiMove === 'tax'){
+            this.ai.coins += 3
+        }
+        this.disable_decisons()
     }
 
+    challenge(){
+        if ((this.aiMove === 'steal') && (this.ai.roles[0][0] === 'captain' || this.ai.roles[1][0] === 'captain')){
+            this.player.removeRole()
+        } else if ((this.aiMove === 'steal') && (this.ai.roles[0][0] !== 'captain' && this.ai.roles[1][0] !== 'captain')){
+            this.ai.removeRole()
+        } else if ((this.aiMove === 'assassinate') && (this.ai.roles[0][0] === 'assassin' || this.ai.roles[1][0] === 'assassin')){
+            this.player.removeRole()
+        } else if ((this.aiMove === 'assassinate') && (this.ai.roles[0][0] !== 'assassin' && this.ai.roles[1][0] !== 'assassin')){
+            this.ai.removeRole()
+        } else if ((this.aiMove === 'tax') && (this.ai.roles[0][0] === 'duke' || this.ai.roles[1][0] === 'duke')){
+            this.player.removeRole()
+        } else if ((this.aiMove === 'tax') && (this.ai.roles[0][0] !== 'duke' && this.ai.roles[1][0] !== 'duke')){
+            this.ai.removeRole()
+        } 
+        this.disable_decisons()
+    }
+
+    block(){
+        if ((this.aiMove === 'assassinate') && ((this.player.roles[0][0] === 'contessa' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'contessa' && this.player.roles[1][1] === true))){
+            alert('blocked')
+        }
+        this.allow_actions()
+        this.disable_decisons()
+    }
+
+
     allow_actions(){
-        const actions = document.querySelectorAll('button')
+        const actions = [document.querySelector('#tax'),
+        document.querySelector('#steal'),
+        document.querySelector('#assassinate')]
         actions.forEach(el => {
             el.disabled = false
         })
     }
 
-    computer_assassinate(){
-
+    allow_decisions(){
+        const decision = [document.querySelector('#allow'),
+        document.querySelector('#challenge'),
+        document.querySelector('#block')]
+        decision.forEach(el => {
+            el.disabled = false 
+        })
     }
 
-    computer_turn(){
+    disable_actions(){
+        const actions = [document.querySelector('#tax'),
+        document.querySelector('#steal'),
+        document.querySelector('#assassinate')]
+        actions.forEach(el => {
+            el.disabled = true 
+        })
+    }
+
+    disable_decisons(){
+        const decision = [document.querySelector('#allow'),
+        document.querySelector('#challenge')]
+        decision.forEach(el => {
+            el.disabled = true 
+        })
+    }
+
+    computerTurn(){
+        const moves = ['assassinate', 'steal', 'tax']
         const rand = Math.floor(Math.random() * 3)
-        if (rand === 1){
-            this.assassinate()
+        alert(`Computer used ${moves[rand]}`)
+        this.aiMove = `${moves[rand]}`
+        this.disable_actions();
+        this.allow_decisions();
+        setTimeout(this.allow_actions, 5000)
+    }
+
+    play(){
+        while(!this.game_over){
+            this.playerTurn()
+            setTimeout(this.computerTurn(), 10000)
+            this.win();
         }
     }
 
+    win(){
+        if (this.player.roles[0][1] === false && this.player.roles[1][1] === false ){
+            this.game_over = true 
+            console.log('Ai wins')
+        } else if (this.ai.roles[0][1] === true && this.ai.roles[1][1] === true){
+            this.game_over = true 
+            console.log('Player wins')
+        }
+    }
+
+    playerTurn(){
+        document.querySelector('#playerMove').style.display='block' 
+    }
     
 }
 
@@ -185,4 +227,4 @@ window.game = Game;
 //display turns 
 //display win
 //restart 
-// fix assassinate
+//fix player remove

@@ -26,12 +26,13 @@ class Ai {
 
     removeRole(){
         const rand = Math.floor(Math.random() * 2)
-        if (this.roles[0][1] === true){
-            this.roles[1][1] === true 
+        if (this.roles[0][1] === false && this.roles[1][1] === false){
+            this.roles[rand][1] = true 
+        } else if (this.roles[0][1] === true){
+            this.roles[1][1] = true 
         } else if (this.roles[1][1] === true){
-            this.roles[0][1] === true 
+            this.roles[0][1] = true 
         }
-        this.roles[rand][1] === true
     }
 }
 

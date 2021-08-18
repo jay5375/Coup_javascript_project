@@ -148,17 +148,8 @@ class GameView {
         this.ctx.font = 50 + 'px Georgia'
         this.ctx.fillText(this.game.player.coins, this.canvas.width * .2, this.canvas.height * .60)
         this.ctx.strokeText(this.game.player.coins, 300, 650)
-    }
+    }   
 
-    renderCoinAi(){
-
-    }
-
-
-
-   
-
- 
     
 }
 

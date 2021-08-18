@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="./dist/main.js"></script>
     <title>Coup</title>
 </head>
@@ -19,11 +18,12 @@
             <li><a onclick="document.getElementById('id01').style.display='block'">Instructions</a></li>
         </ul>
     </nav>
-    <div id="id01" class="w3-modal">
+    <div id="id01" class="modal">
         <div class="modal-content">
             <div>
                 <span onclick="document.getElementById('id01').style.display='none'"
-                    class="close">&times;</span>
+                    class="close">&times;
+                </span>
                 <p class="instructions">Instructions</p>
                 <p class="instructions">Coup is a role based game where the goal is to eliminate the other players influence entirely.
                     This can be achieved by revealing both of the opponents cards through different means.
@@ -39,6 +39,7 @@
                         <li>Duke(Tax): Gain 3 coins from the bank </li>
                         <li>Assassin(Assassinate): Remove a role from the opponent</li>
                         <li>Contessa(Block): Block assassinate</li>
+                        <li>Coup: Requires 10 coins, remove an opponent's role</li>
                     </ul>
                 </p>
             </div>
@@ -48,13 +49,24 @@
         <button id='tax' onclick="">Tax</button>
         <button id='steal'>Steal</button>
         <button id='assassinate'>Assassinate</button>
-        <button id='block'>Block</button>
-        <button id='allow'>Allow</button>
-        <button id='challenge'>Challenge</button>
+        <button id='block' disabled>Block</button>
+        <button id='allow' disabled>Allow</button>
+        <button id='challenge' disabled>Challenge</button>
         <button id='coup'>Coup</button>
     </div>
     <canvas id='board'></canvas>
     
+    <div id="playerMove" class="modal">
+        <div class="modal-content">
+            <div>
+                <span onclick="document.getElementById('playerMove').style.display='none'" class="close">&times;
+                </span>
+                <p class='instructions'>Choose an ability to use</p>
+            </div>
+        </div>
+    </div>
+
+
 </body>
 
 </html>
