@@ -24,4 +24,4 @@ In addition, this project will include:
 - Thursday: Add more complex logic to computer player
 
 # Wireframe
-![wireframe](wireframe.png)
+![wireframe](assets/wireframe.png)
