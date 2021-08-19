@@ -244,12 +244,6 @@ class Game {
         this.allow_decisions();
     }
 
-    // play(){
-    //     while(this.game_over === false){
-    //         this.playerTurn()
-    //         this.gameOver()
-    //     }
-    // }
 
     gameOver(){
         if (this.player.roles[0][1] === false && this.player.roles[1][1] === false ){

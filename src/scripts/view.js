@@ -54,12 +54,12 @@ class GameView {
         const first_boolean = role[0][1]
         if (first_boolean === true){
             this.card = new Image();
-            this.card.src = `../../assets/${first}.png`
+            this.card.src = `./assets/${first}.png`
             this.ctx.drawImage(this.card, this.canvas.width * .37, this.canvas.height * .38)
      
         } else if (first_boolean === false) {
             this.card = new Image();
-            this.card.src = '../../assets/cardback.png'
+            this.card.src = './assets/cardback.png'
             this.ctx.drawImage(this.card, this.canvas.width * .37, this.canvas.height * .38)
         }
     }
@@ -70,11 +70,11 @@ class GameView {
         const first_boolean = role[1][1]
         if (first_boolean === true){
             this.card2 = new Image();
-            this.card2.src = `../../assets/${first}.png`
+            this.card2.src = `./assets/${first}.png`
             this.ctx.drawImage(this.card2, this.canvas.width * .52, this.canvas.height * .38) 
         } else if (first_boolean === false) {
             this.card2 = new Image();
-            this.card2.src = '../../assets/cardback.png'
+            this.card2.src = './assets/cardback.png'
             this.ctx.drawImage(this.card2, this.canvas.width * .52, this.canvas.height * .38)
         }
     }
@@ -85,11 +85,11 @@ class GameView {
         const first_boolean = role[0][1]
         if (first_boolean === true){
             this.aicard = new Image();
-            this.aicard.src = `../../assets/${first}.png`
+            this.aicard.src = `./assets/${first}.png`
             this.ctx.drawImage(this.aicard, this.canvas.width * .37, this.canvas.height * .02)
         } else if (first_boolean === false) {
             this.aicard = new Image();
-            this.aicard.src = '../../assets/cardback.png'
+            this.aicard.src = './assets/cardback.png'
             this.ctx.drawImage(this.aicard, this.canvas.width * .37, this.canvas.height * .02)
         }
     }
@@ -100,12 +100,12 @@ class GameView {
         const first_boolean = role[1][1]
         if (first_boolean === true){
             this.aicard2 = new Image();
-            this.aicard2.src = `../../assets/${first}.png`
+            this.aicard2.src = `./assets/${first}.png`
             this.ctx.drawImage(this.aicard2, this.canvas.width * .52, this.canvas.height * .02)
             
         } else if (first_boolean === false) {
             this.aicard2 = new Image();
-            this.aicard2.src = '../../assets/cardback.png'
+            this.aicard2.src = './assets/cardback.png'
             this.ctx.drawImage(this.aicard2, this.canvas.width * .52, this.canvas.height * .02)
             
         }
@@ -113,14 +113,14 @@ class GameView {
 
     setupCoins(){
         this.coins = new Image();
-        this.coins.src = '../../assets/coins.png'
+        this.coins.src = './assets/coins.png'
         this.ctx.drawImage(this.coins, this.canvas.width * .2, this.canvas.height * .55)
         
     }
 
      setupAiCoins(){
         this.coins = new Image();
-        this.coins.src = '../../assets/coins.png'
+        this.coins.src = './assets/coins.png'
         this.ctx.drawImage(this.coins, this.canvas.width * .2, this.canvas.height * .05)
         
     }
