@@ -262,6 +262,7 @@ class Game {
             document.querySelector('#compMove').innerHTML = `Computer has staged a coup: Player loses a role.`
             document.querySelector('#computerMove').style.display='block'
             this.player.removeRole()
+            this.allow_actions()
         } else {
             const moves = ['assassinate', 'steal', 'tax']
             const rand = Math.floor(Math.random() * 3)
