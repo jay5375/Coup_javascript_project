@@ -267,7 +267,7 @@ class Game {
             const moves = ['assassinate', 'steal', 'tax']
             const rand = Math.floor(Math.random() * 3)
             this.aiMove = moves[rand]
-            document.querySelector('#compMove').innerHTML = `Computer has used ${this.aiMove}`
+            document.querySelector('#compMove').innerHTML = `Computer turn: Computer has used ${this.aiMove}`
             document.querySelector('#computerMove').style.display='block'
             this.disable_actions(); //issue here
             this.allow_decisions();
