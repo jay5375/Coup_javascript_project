@@ -195,19 +195,24 @@ class Game {
         if (this.aiMove === 'assassinate' && decision === 'allow'){ 
             document.querySelector('#test').innerHTML = 'Action not challenged: Assassination blocked'
             document.querySelector('#dAllow').style.display='block'
+            this.allow_actions()
+            this.disable_decisons()
         } else if (this.aiMove === 'assassinate' && decision !== 'allow'){
             if ((this.player.roles[0][0] === 'contessa' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'contessa' && this.player.roles[1][1] === true)) {
                 this.ai.removeRole()
                 document.querySelector('#test').innerHTML = 'Action has been challenged: Ai loses a role'
                 document.querySelector('#dAllow').style.display='block'
+                this.allow_actions()
+                this.disable_decisons()
             } else {
                 this.player.removeRole()
                 document.querySelector('#test').innerHTML = 'Action has been challenged: Player loses a role'
                 document.querySelector('#dAllow').style.display='block'
+                this.allow_actions()
+                this.disable_decisons()
             }
         }
-            this.allow_actions()
-            this.disable_decisons()
+            
     } 
         
     
@@ -263,10 +268,10 @@ class Game {
             this.aiMove = moves[rand]
             document.querySelector('#compMove').innerHTML = `Computer has used ${this.aiMove}`
             document.querySelector('#computerMove').style.display='block'
-           
+            this.disable_actions(); //issue here
+            this.allow_decisions();
         }
-        this.disable_actions(); //issue here
-        this.allow_decisions();
+        
     }
 
 
