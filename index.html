@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
     <title>Coup</title>
+    <link rel="icon" type="image/png" href="/assets/contessa.png" />
 </head>
 
 <body>
     <nav>
         <ul class='navbar'>
             <li>Coup</li>
-            <li><a href='https://github.com/jay5375/Coup_javascript_project'>Github</a></li>
+            <li><a href='https://github.com/jay5375'>Github</a></li>
             <li><a onclick="document.getElementById('id01').style.display='block'">Instructions</a></li>
         </ul>
     </nav>
@@ -52,7 +53,7 @@
         <button id='block' disabled>Block</button>
         <button id='allow' disabled>Allow</button>
         <button id='challenge' disabled>Challenge</button>
-        <button id='coup'>Coup</button>
+        <button id='coup' disabled>Coup</button>
     </div>
     <canvas id='board'></canvas>
     
@@ -63,6 +64,34 @@
                 </span>
                 <p class='instructions'>Choose an ability to use</p>
             </div>
+        </div>
+    </div>
+
+    <div id="computerMove" class="modal">
+        <div class="modal-content">
+            <div>
+                <span onclick="document.getElementById('computerMove').style.display='none'" class="close">&times;
+                </span>
+                <p id='compMove'></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="dAllow" class="modal">
+        <div class="modal-content">
+            <div>
+                <span onclick="document.getElementById('dAllow').style.display='none'" class="close">&times;
+                </span>
+                <p id='test'></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="restart" class="modal">
+        <div class="modal-content">
+            <p id='test2'></p>
+            <button id='restart2'>Restart</button>
         </div>
     </div>
 

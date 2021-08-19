@@ -8,7 +8,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  background-color: #141C27;
 }
 
 #board {
@@ -18,16 +18,8 @@ html, body {
   padding-top: 50px;
 }
 
-:root {
-  --color-red: #ec1840;
-  --color-purple: #7a18ec;
-  --color-white: #fff;
-  --color-pink: #7A07A2;
-  --color-black-1: #111;
-  --color-black-2: #222;
-  --color-black-3: #444;
-  --speed-normal: 0.5s;
-  --speed-fast: 0.8s;
+#test2 {
+  padding: 10px 20px;
 }
 
 #tax {
@@ -122,7 +114,7 @@ a:hover {
 .navbar {
   display: flex;
   list-style-type: none;
-  padding-top: 12px;
+  padding-top: 3px;
   justify-content: space-evenly;
   font-family: "Black Ops One";
 }
@@ -133,41 +125,37 @@ a:hover {
 
 .modal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: 100%;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: black;
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
 }
 
 .modal-content {
   background-color: black;
   margin: 10% auto;
-  /* 15% from the top and centered */
   padding: 10px;
   border: 1px solid #888;
   width: 50%;
-  /* Could be more or less, depending on screen size */
   color: white;
+  text-align: center;
+  font-family: "Black Ops One";
 }
 
 .close {
-  color: #aaa;
-  float: right;
+  top: 0;
+  color: red;
   font-size: 30px;
   font-weight: bold;
+}
+
+#test {
+  font-family: "Black Ops One";
 }
 
 .close:hover {
@@ -179,6 +167,10 @@ a:hover {
 }
 
 #mod {
+  font-family: "Black Ops One";
+}
+
+#compMove {
   font-family: "Black Ops One";
 }
 

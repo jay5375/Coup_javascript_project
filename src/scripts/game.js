@@ -1,5 +1,4 @@
 import player from "./player";
-import Board from "./board";
 import ai from "./ai";
 
 class Game {
@@ -9,7 +8,6 @@ class Game {
         this.current_player = this.player;
         this.win = false;
         this.canvas = canvas;
-        this.game_over = false 
     }
     
     button_actions(){
@@ -42,17 +40,20 @@ class Game {
         const decision = this.ai.decision()
         if (decision === 'allow'){
             this.player.coins += 3
-            console.log('+3')
+            document.querySelector('#test').innerHTML = 'Player gained 3 coins'
+            document.querySelector('#dAllow').style.display='block'
         } else {
             if ((this.player.roles[0][0] === 'duke' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'duke' && this.player.roles[1][1] === true)){
                 this.ai.removeRole()
-                console.log('ai loses card')
+                document.querySelector('#test').innerHTML = 'Action has been challenged. Ai loses role'
+                document.querySelector('#dAllow').style.display='block'
             } else {
                 this.player.removeRole()
-                console.log('player loses card')
+                document.querySelector('#test').innerHTML = 'Action has been challenged. Player loses role'
+                document.querySelector('#dAllow').style.display='block'
             }
         }
-         setTimeout(this.allow_actions, 2000)
+        this.computerTurn()
     }
 
     assassinate(){
@@ -60,18 +61,20 @@ class Game {
         const decision = this.ai.decision()
         if (decision === 'allow'){
             this.ai.removeRole() 
-            console.log('Ai loses card')
+            document.querySelector('#test').innerHTML = 'Assassination successful'
+            document.querySelector('#dAllow').style.display='block'
         } else {
             if ((this.player.roles[0][0] === 'assassin' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'assassin' && this.player.roles[1][1] === true)) {
                 this.ai.removeRole()
-                console.log('Ai loses card2')
+                document.querySelector('#test').innerHTML = 'Action has been challenged. Ai loses role'
+                document.querySelector('#dAllow').style.display='block'
             } else {
                 this.player.removeRole()
-                console.log('Player loses card')
+                document.querySelector('#test').innerHTML = 'Action has been challenged. Player loses role'
+                document.querySelector('#dAllow').style.display='block'
             }
         }
-
-        setTimeout(this.allow_actions, 2000)
+        this.computerTurn()
     }
 
      steal(){
@@ -81,30 +84,42 @@ class Game {
             if (this.ai.coins === 1){
             this.player.coins += 1 
             this.ai.coins = 0
-            console.log('stolen') 
+            document.querySelector('#test').innerHTML = 'Player has stolen coins'
+            document.querySelector('#dAllow').style.display='block'
         } else if (this.ai.coins > 0 && this.ai.coins !== 1){
             this.player.coins += 2
             this.ai.coins -= 2
-            console.log('stolen2')
+            document.querySelector('#test').innerHTML = 'Player has stolen coins'
+            document.querySelector('#dAllow').style.display='block'
         } else if (this.ai.coins <= 0) {
             this.ai.coins = 0
-            console.log('0 coins')
+            document.querySelector('#test').innerHTML = 'No coins to steal'
+            document.querySelector('#dAllow').style.display='block'
         }}
         else {
             if ((this.player.roles[0][0] === 'captain' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'captain' && this.player.roles[1][1] === true)) {
                 this.ai.removeRole()
+                document.querySelector('#test').innerHTML = 'Action has been challenged. Ai loses role.'
+                document.querySelector('#dAllow').style.display='block'
             } else {
                 this.player.removeRole()
-            }
+                document.querySelector('#test').innerHTML = 'Action has been challenged. Player loses role'
+                document.querySelector('#dAllow').style.display='block'
+            }   
         }
-        
-        setTimeout(this.allow_actions, 2000)
+        this.computerTurn()
     }
 
     coup(){
         if (this.player.coins >= 10){
             this.player.coins -= 10; 
             this.ai.removeRole();
+            document.querySelector('#test').innerHTML = 'Player staged a coup on Ai'
+            document.querySelector('#dAllow').style.display='block'
+            this.computerTurn()
+        } else {
+            document.querySelector('#test').innerHTML = 'Coup requires 10 coins'
+            document.querySelector('#dAllow').style.display='block'
         }
     }
 
@@ -112,47 +127,73 @@ class Game {
         if (this.aiMove === 'steal' && this.player.coins === 1){
             this.player.coins = 0
             this.ai.coins += 1 
+            document.querySelector('#test').innerHTML = 'Ai has stolen coins'
+            document.querySelector('#dAllow').style.display='block'
         } else if (this.aiMove === 'steal' && this.player.coins > 1){
             this.player.coins -= 2
             this.ai.coins += 2
+            document.querySelector('#test').innerHTML = 'Ai has stolen coins'
+            document.querySelector('#dAllow').style.display='block'
         } else if (this.aiMove === 'assassinate'){
             this.player.removeRole()
+            document.querySelector('#test').innerHTML = 'Computer assassinated a role'
+            document.querySelector('#dAllow').style.display='block'
         } else if (this.aiMove === 'tax'){
             this.ai.coins += 3
+            document.querySelector('#test').innerHTML = 'Computer gained 3 coins'
+            document.querySelector('#dAllow').style.display='block'
         }
         this.disable_decisons()
+        this.allow_actions()
     }
 
     challenge(){
         if ((this.aiMove === 'steal') && (this.ai.roles[0][0] === 'captain' || this.ai.roles[1][0] === 'captain')){
             this.player.removeRole()
+            document.querySelector('#test').innerHTML = 'Action challenged. Player loses role'
+            document.querySelector('#dAllow').style.display='block'
         } else if ((this.aiMove === 'steal') && (this.ai.roles[0][0] !== 'captain' && this.ai.roles[1][0] !== 'captain')){
             this.ai.removeRole()
-        } else if ((this.aiMove === 'assassinate') && (this.ai.roles[0][0] === 'assassin' || this.ai.roles[1][0] === 'assassin')){
+            document.querySelector('#test').innerHTML = 'Action challenged. Ai loses role'
+            document.querySelector('#dAllow').style.display='block'
+        } else if ((this.aiMove === 'assassinate') && ((this.ai.roles[0][0] === 'assassin' && this.ai.roles[0][1] === false) || (this.ai.roles[1][0] === 'assassin' && this.ai.roles[1][1] === false))){
             this.player.removeRole()
+            document.querySelector('#test').innerHTML = 'Action challenged. Player loses role'
+            document.querySelector('#dAllow').style.display='block'
         } else if ((this.aiMove === 'assassinate') && (this.ai.roles[0][0] !== 'assassin' && this.ai.roles[1][0] !== 'assassin')){
             this.ai.removeRole()
+            document.querySelector('#test').innerHTML = 'Action challenged. Ai loses role'
+            document.querySelector('#dAllow').style.display='block'
         } else if ((this.aiMove === 'tax') && (this.ai.roles[0][0] === 'duke' || this.ai.roles[1][0] === 'duke')){
             this.player.removeRole()
+            document.querySelector('#test').innerHTML = 'Action challenged. Player loses role'
+            document.querySelector('#dAllow').style.display='block'
         } else if ((this.aiMove === 'tax') && (this.ai.roles[0][0] !== 'duke' && this.ai.roles[1][0] !== 'duke')){
             this.ai.removeRole()
+            document.querySelector('#test').innerHTML = 'Action challenged. Ai loses role'
+            document.querySelector('#dAllow').style.display='block'
         } 
         this.disable_decisons()
+        this.allow_actions()
+
     }
 
     block(){
         if ((this.aiMove === 'assassinate') && ((this.player.roles[0][0] === 'contessa' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'contessa' && this.player.roles[1][1] === true))){
-            alert('blocked')
-        }
-        this.allow_actions()
-        this.disable_decisons()
+            document.querySelector('#test').innerHTML = 'Assassination blocked'
+            document.querySelector('#dAllow').style.display='block'
+            this.allow_actions()
+            this.disable_decisons()
+        } 
+        
     }
 
 
     allow_actions(){
         const actions = [document.querySelector('#tax'),
         document.querySelector('#steal'),
-        document.querySelector('#assassinate')]
+        document.querySelector('#assassinate'),
+        document.querySelector('#coup')]
         actions.forEach(el => {
             el.disabled = false
         })
@@ -170,7 +211,8 @@ class Game {
     disable_actions(){
         const actions = [document.querySelector('#tax'),
         document.querySelector('#steal'),
-        document.querySelector('#assassinate')]
+        document.querySelector('#assassinate'),
+        document.querySelector('#coup')]
         actions.forEach(el => {
             el.disabled = true 
         })
@@ -185,36 +227,60 @@ class Game {
     }
 
     computerTurn(){
-        const moves = ['assassinate', 'steal', 'tax']
-        const rand = Math.floor(Math.random() * 3)
-        alert(`Computer used ${moves[rand]}`)
-        this.aiMove = `${moves[rand]}`
-        this.disable_actions();
+        if (this.ai.coins >= 10){
+            this.ai.coins -= 10
+            document.querySelector('#compMove').innerHTML = `Computer has staged a coup`
+            document.querySelector('#computerMove').style.display='block'
+            this.player.removeRole()
+        } else {
+            const moves = ['assassinate', 'steal', 'tax']
+            const rand = Math.floor(Math.random() * 3)
+            this.aiMove = moves[rand]
+            document.querySelector('#compMove').innerHTML = `Computer has used ${this.aiMove}`
+            document.querySelector('#computerMove').style.display='block'
+           
+        }
+        this.disable_actions(); //issue here
         this.allow_decisions();
-        setTimeout(this.allow_actions, 5000)
     }
 
-    play(){
-        while(!this.game_over){
-            this.playerTurn()
-            setTimeout(this.computerTurn(), 10000)
-            this.win();
-        }
-    }
+    // play(){
+    //     while(this.game_over === false){
+    //         this.playerTurn()
+    //         this.gameOver()
+    //     }
+    // }
 
-    win(){
+    gameOver(){
         if (this.player.roles[0][1] === false && this.player.roles[1][1] === false ){
-            this.game_over = true 
-            console.log('Ai wins')
+            this.ai_win = true 
         } else if (this.ai.roles[0][1] === true && this.ai.roles[1][1] === true){
-            this.game_over = true 
-            console.log('Player wins')
+            this.player_win = true 
         }
+    }
+
+    newGame(){
+        if (this.player_win === true){
+            document.querySelector('#test2').innerHTML = 'Player wins'
+            document.querySelector('#restart').style.display='block'
+            this.restart()
+        } else if (this.ai_win === true){
+            document.querySelector('#test2').innerHTML = 'Ai wins'
+            document.querySelector('#restart').style.display='block'
+            this.restart()
+        }
+    }
+
+    restart(){
+        document.querySelector('#restart2').onclick = function (){
+            document.location.href = ''
+        }.bind(this)
     }
 
     playerTurn(){
         document.querySelector('#playerMove').style.display='block' 
     }
+
     
 }
 
@@ -222,9 +288,6 @@ export default Game;
 window.game = Game;
 
 //fix modal
-//implement turns 
-//allow challenge block in response
-//display turns 
 //display win
-//restart 
-//fix player remove
+//game over restart
+//fix navbar

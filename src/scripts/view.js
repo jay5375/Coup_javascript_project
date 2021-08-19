@@ -1,10 +1,3 @@
-// Changes:
-// Move setupBoard
-// JSON.stringify position
-// Can't set delegated event handler, so instead we use the event target
-// event handler needs to be a named function if we want to remove it
-// We don't REALLY still need bindEvents...
-// Added a handleGameOver for cleanliness 
 
 class GameView {
     constructor(game, canvas) {
@@ -20,7 +13,9 @@ class GameView {
         this.animation = function() {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
             if (this.animating === true){
-                this.renderEntities() 
+                this.renderEntities()
+                this.game.gameOver() 
+                this.game.newGame()
                 this.interval = window.requestAnimationFrame(this.animation)
                 
             }
@@ -149,6 +144,7 @@ class GameView {
         this.ctx.fillText(this.game.player.coins, this.canvas.width * .2, this.canvas.height * .60)
         this.ctx.strokeText(this.game.player.coins, 300, 650)
     }   
+
 
     
 }
