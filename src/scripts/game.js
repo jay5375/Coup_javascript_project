@@ -286,11 +286,11 @@ class Game {
 
     newGame(){
         if (this.player_win === true){
-            document.querySelector('#test2').innerHTML = 'Player wins'
+            document.querySelector('#test2').innerHTML = 'Ai has lost both roles. Player wins'
             document.querySelector('#restart').style.display='block'
             this.restart()
         } else if (this.ai_win === true){
-            document.querySelector('#test2').innerHTML = 'Ai wins'
+            document.querySelector('#test2').innerHTML = 'Player has lost both roles. Ai wins'
             document.querySelector('#restart').style.display='block'
             this.restart()
         }
@@ -312,7 +312,3 @@ class Game {
 export default Game;
 window.game = Game;
 
-//fix modal
-//display win
-//game over restart
-//fix navbar
