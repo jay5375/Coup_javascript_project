@@ -34,7 +34,6 @@ class Game {
         }.bind(this)
     }
 
-    // rerender cards
     tax(){
         this.disable_actions()
         const decision = this.ai.decision()

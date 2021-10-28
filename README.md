@@ -6,7 +6,42 @@ each with unique abilities that can influence the player's coin pile or other pl
 # Functionality & MVPs
 In Coup, users will be able to:
 - Use card abilities in order to gain an advantage 
+
+```js
+tax(){
+    this.disable_actions()
+    const decision = this.ai.decision()
+    if (decision === 'allow'){
+        this.player.coins += 3
+        document.querySelector('#test').innerHTML = 'Action allowed: Player gained 3 coins'
+        document.querySelector('#dAllow').style.display='block'
+    } else {
+        if ((this.player.roles[0][0] === 'duke' && this.player.roles[0][1] === true) || (this.player.roles[1][0] === 'duke' && this.player.roles[1][1] === true)){
+            this.ai.removeRole()
+            document.querySelector('#test').innerHTML = 'Action has been challenged: Ai loses a role'
+            document.querySelector('#dAllow').style.display='block'
+        } else {
+            this.player.removeRole()
+            document.querySelector('#test').innerHTML = 'Action has been challenged: Player loses a role'
+            document.querySelector('#dAllow').style.display='block'
+        }
+    }
+    this.computerTurn()
+}
+```
+
 - Call bluffs on opponents actions 
+```js 
+challenge(){
+if ((this.aiMove === 'steal') && ((this.ai.roles[0][0] === 'captain' && this.ai.roles[0][1] === false) || (this.ai.roles[1][0] === 'captain' && this.ai.roles[1][1] === false))){
+    this.player.removeRole()
+    document.querySelector('#test').innerHTML = 'Action challenged: Player loses a role'
+    document.querySelector('#dAllow').style.display='block'
+} else if ((this.aiMove === 'steal') && (this.ai.roles[0][0] !== 'captain' && this.ai.roles[1][0] !== 'captain')){
+    this.ai.removeRole()
+    document.querySelector('#test').innerHTML = 'Action challenged: Ai loses a role'
+    document.querySelector('#dAllow').style.display='block'
+```
 - Check their coin pile to see how far they are from their intended action 
 - See revealed opponents cards to make more informed decisions 
 
